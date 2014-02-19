@@ -1,0 +1,25 @@
+{
+  "name": "common-regex",
+  "description": "a collection of common regular expressions",
+  "version": "0.0.1",
+  "author": {
+    "name": "Ovi Comes"
+  },
+  "license": "MIT",
+  "keywords": [
+    "regex",
+    "collection",
+    "common"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/clonq/common-regex"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "readme": "A collection of common regular expressions",
+  "dependencies": {
+    "chai": "~1.9.0"
+  }
+}
