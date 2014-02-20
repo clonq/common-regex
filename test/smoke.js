@@ -24,18 +24,26 @@ var INVALID_EMAILS = [
 ]
 
 var VALID_PHONE_NUMBERS = [
+	'123-456-7890',
 	'1-234-567-8901',
     '1-234-567-8901 x1234',
     '1-234-567-8901 ext1234',
     '1 (234) 567-8901',
     '1.234.567.8901',
-    '12345678901'
+    '12345678901',
+    '1/234/567/8901'
 ]
 
 var INVALID_PHONE_NUMBERS = [
-    '1/234/567/8901',
-    'a/234/567/8901'
+    'a-234-567-8901',
+    '+.234.567.8901',
+    '123',
+    'abc'
 ]
+
+var EMAIL_ONLY_TEXT = 'Here\'s my email address: john.doe@gmail.com, Best, John'; 
+var PHONE_ONLY_TEXT = 'Here\'s my phone number 123.456.7890, Cheers, Jane'; 
+var EMAIL_PHONE_TEXT = 'My email address is john.doe@gmail.com. You can also call me at 123.456.7890. Thanks, John'; 
 
 describe('positive tests', function(){
 	it('valid emails should validate', function(){
@@ -60,5 +68,30 @@ describe('negative tests', function(){
 		_.each(INVALID_PHONE_NUMBERS, function(it){
 			expect(cr.phone.test(it)).to.not.be.ok;
 		})
+	});
+});
+
+describe('extraction tests', function(){
+	it('email from an email-only text', function(){
+		var email = cr.extract('email', EMAIL_ONLY_TEXT)
+		expect(email).to.exist;
+		expect(email).to.not.be.empty;
+		expect(email).to.equal('john.doe@gmail.com');
+	});
+	it('phone from a phone-only text', function(){
+		var phone = cr.extract('phone', PHONE_ONLY_TEXT)
+		expect(phone).to.exist;
+		expect(phone).to.not.be.empty;
+		expect(phone).to.equal('123.456.7890');
+	});
+	it('email & phone from an email & phone text', function(){
+		var email = cr.extract('email', EMAIL_PHONE_TEXT)
+		expect(email).to.exist;
+		expect(email).to.not.be.empty;
+		expect(email).to.equal('john.doe@gmail.com');
+		var phone = cr.extract('phone', EMAIL_PHONE_TEXT)
+		expect(phone).to.exist;
+		expect(phone).to.not.be.empty;
+		expect(phone).to.equal('123.456.7890');
 	});
 });
