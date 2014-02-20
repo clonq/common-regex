@@ -18,8 +18,9 @@
   "scripts": {
     "test": "mocha --reporter spec"
   },
-  "readme": "A collection of common regular expressions",
-  "dependencies": {
-    "chai": "~1.9.0"
-  }
+  "devDependencies": {
+    "chai": "~1.9.0",
+    "lodash": "~2.4.1"
+  },
+  "readme": "A collection of common regular expressions"
 }
