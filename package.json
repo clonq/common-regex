@@ -1,7 +1,7 @@
 {
   "name": "common-regex",
   "description": "a collection of common regular expressions",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": {
     "name": "Ovi Comes"
   },

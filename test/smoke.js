@@ -41,6 +41,14 @@ var INVALID_PHONE_NUMBERS = [
     'abc'
 ]
 
+var VALID_STREET_SUFFIXES = [
+	'St'
+]
+
+var INVALID_STREET_SUFFIXES = [
+	'xxx'
+]
+
 var EMAIL_ONLY_TEXT = 'Here\'s my email address: john.doe@gmail.com, Best, John'; 
 var PHONE_ONLY_TEXT = 'Here\'s my phone number 123.456.7890, Cheers, Jane'; 
 var EMAIL_PHONE_TEXT = 'My email address is john.doe@gmail.com. You can also call me at 123.456.7890. Thanks, John'; 
@@ -56,6 +64,11 @@ describe('positive tests', function(){
 			expect(cr.phone.test(it)).to.be.ok;
 		})
 	});
+	it('valid street suffixes should validate', function(){
+		_.each(VALID_STREET_SUFFIXES, function(it){
+			expect(cr.street_suffix.test(it)).to.be.ok;
+		})
+	});
 });
 
 describe('negative tests', function(){
@@ -67,6 +80,11 @@ describe('negative tests', function(){
 	it('invalid phone numbers should not validate', function(){
 		_.each(INVALID_PHONE_NUMBERS, function(it){
 			expect(cr.phone.test(it)).to.not.be.ok;
+		})
+	});
+	it('invalid street suffixes should not validate', function(){
+		_.each(INVALID_STREET_SUFFIXES, function(it){
+			expect(cr.street_suffix.test(it)).to.not.be.ok;
 		})
 	});
 });
